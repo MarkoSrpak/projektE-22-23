@@ -1,3 +1,4 @@
-../Core/Src/MDL_sensors.c:14:6:MDL_sensors_init	16	static
-../Core/Src/MDL_sensors.c:24:6:MDL_sensors_handler	8	static
-../Core/Src/MDL_sensors.c:37:6:HAL_ADC_ConvCpltCallback	16	static
+../Core/Src/MDL_sensors.c:26:6:MDL_sensors_init	16	static
+../Core/Src/MDL_sensors.c:37:6:MDL_sensors_handler	8	static
+../Core/Src/MDL_sensors.c:57:6:sensors_calculateCurrentData	16	static
+../Core/Src/MDL_sensors.c:72:6:HAL_ADC_ConvCpltCallback	16	static
