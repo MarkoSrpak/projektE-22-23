@@ -6,28 +6,35 @@
  */
 
 #include "MDL_sensors.h"
+#include "adc.h"
 
-void MDL_sensors_handler(MDL_sensors_handle *sensorsHandle) {
-	int i = 0;
-
-	HAL_ADC_Start_DMA(sensorsHandle->adc_handle, (uint32_t *)sensorsHandle->buffer, NUMBER_OF_SENSORS);
-
-	while (i == 0) {}
+struct MDL_sensors_handler sensors_handler;
 
 
-	if (buff[0] > 6) {
-		HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-	} else {
-		HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
-	}
+void MDL_sensors_init() {
+	sensors_handler.sensorsState = GETTING_DATA;
 
-	if (buff[1] > 6) {
-		HAL_GPIO_WritePin(GPIOG, GPIO_PIN_15, GPIO_PIN_SET);
-	} else {
-		HAL_GPIO_WritePin(GPIOG, GPIO_PIN_15, GPIO_PIN_RESET);
+	for (int i = 0; i < NUMBER_OF_SENSORS; i++) {
+		sensors_handler.sensors[i].currentState = PASIVE;
+//		sensors_handler.sensors[i].gpio_pin
 	}
 
 }
 
+void MDL_sensors_handler() {
 
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t *)sensors_handler.buffer, NUMBER_OF_SENSORS);
+
+
+
+
+
+}
+
+
+// when DMA finishes transferring data this function is called
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
+
+}
 

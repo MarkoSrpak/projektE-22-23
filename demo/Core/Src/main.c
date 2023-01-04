@@ -44,8 +44,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-volatile int i = 0;
-volatile uint16_t buff[2];
 
 /* USER CODE END PV */
 
@@ -92,45 +90,16 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 
-	void change(float i) {
-
-		if (i > 4) {
-			HAL_GPIO_WritePin(GPIOG, GPIO_PIN_15, GPIO_PIN_SET);
-		} else {
-			HAL_GPIO_WritePin(GPIOG, GPIO_PIN_15, GPIO_PIN_RESET);
-		}
-
-	}
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	int val = 0;
-	while (1) {
 
+	while (1) {
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		HAL_ADC_Start_DMA(&hadc1, (uint32_t*) buff, 2);
-		while (i == 0) {
-		}
-
-		i = 0;
-
-		if (buff[0] > 6) {
-			HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
-		} else {
-			HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
-		}
-
-		if (buff[1] > 6) {
-			HAL_GPIO_WritePin(GPIOG, GPIO_PIN_15, GPIO_PIN_SET);
-		} else {
-			HAL_GPIO_WritePin(GPIOG, GPIO_PIN_15, GPIO_PIN_RESET);
-		}
-
 	}
   /* USER CODE END 3 */
 }
@@ -183,9 +152,6 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
-	i = 1;
-}
 
 /* USER CODE END 4 */
 

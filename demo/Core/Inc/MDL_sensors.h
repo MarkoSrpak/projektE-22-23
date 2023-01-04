@@ -12,9 +12,16 @@
 
 #include"main.h"
 
-typedef enum MDL_sensors_sensorState {
+extern struct MDL_sensors_handler sensors_handler;
+
+typedef enum MDL_sensors_sensorsState {
 	GETTING_DATA,
 	CALCULATING_DATA
+} MDL_sensors_sensorsState;
+
+typedef enum MDL_sensors_sensorState {
+	ACTIVE,
+	PASIVE
 } MDL_sensors_sensorState;
 
 typedef struct MDL_sensor_handler {
@@ -24,8 +31,7 @@ typedef struct MDL_sensor_handler {
 } MDL_sensor_handle;
 
 typedef struct MDL_sensors_handler {
-	MDL_sensors_sensorState sensorsState;
-	ADC_HandleTypeDef *adc_handle;
+	MDL_sensors_sensorsState sensorsState;
 	MDL_sensor_handle sensors[NUMBER_OF_SENSORS];
 	volatile uint8_t buffer[NUMBER_OF_SENSORS];
 	//trebalo bi definirati kontrolnu varijablu za
