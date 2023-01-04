@@ -21,6 +21,7 @@
 #include "adc.h"
 #include "dma.h"
 #include "gpio.h"
+#include "MDL_sensors.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -89,6 +90,7 @@ int main(void)
   MX_DMA_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
+  MDL_sensors_init();
 
   /* USER CODE END 2 */
 
@@ -100,6 +102,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		MDL_sensors_handler();
 	}
   /* USER CODE END 3 */
 }

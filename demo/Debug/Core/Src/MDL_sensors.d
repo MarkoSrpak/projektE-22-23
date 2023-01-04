@@ -1,5 +1,4 @@
-Core/Src/MDL_sensors.o: ../Core/Src/MDL_sensors.c \
- ../Core/Inc/MDL_sensors.h ../Core/Inc/main.h \
+Core/Src/MDL_sensors.o: ../Core/Src/MDL_sensors.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -28,8 +27,8 @@ Core/Src/MDL_sensors.o: ../Core/Src/MDL_sensors.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
- ../Core/Inc/adc.h
-../Core/Inc/MDL_sensors.h:
+ ../Core/Inc/MDL_sensors.h ../Core/Inc/main.h ../Core/Inc/adc.h \
+ ../Core/Inc/gpio.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -59,4 +58,7 @@ Core/Src/MDL_sensors.o: ../Core/Src/MDL_sensors.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
+../Core/Inc/MDL_sensors.h:
+../Core/Inc/main.h:
 ../Core/Inc/adc.h:
+../Core/Inc/gpio.h:

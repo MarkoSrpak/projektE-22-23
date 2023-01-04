@@ -18,7 +18,8 @@ extern struct MDL_sensors_handler sensors_handler;
 typedef enum MDL_sensors_sensorsState {
 	GETTING_DATA,
 	CALCULATING_DATA,
-	DETERMINING_SENSOR_STATE
+	DETERMINING_SENSOR_STATE,
+	CHECKING_SENSOR_STATE
 } MDL_sensors_sensorsState;
 
 typedef enum MDL_sensors_sensorState {
@@ -36,7 +37,7 @@ typedef struct MDL_sensor_handler {
 typedef struct MDL_sensors_handler {
 	MDL_sensors_sensorsState state;
 	MDL_sensor_handle sensors[NUM_OF_SENSORS];
-	volatile uint8_t buffer[NUM_OF_SENSORS];
+	volatile uint16_t buffer[NUM_OF_SENSORS];
 	uint8_t ordinalNumOfMeasurment;
 
 } MDL_sensors_handle;

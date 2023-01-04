@@ -5,14 +5,16 @@
  *      Author: Petar
  */
 
+#include "main.h"
 #include "MDL_sensors.h"
 #include "adc.h"
+#include "gpio.h"
 
 //*********************************PRIVATE FUNCTIONS**********************************
 
 void sensors_calculateCurrentData();
 void sensors_determineIfSensorsDetectedObject();
-void sensors_sensorIsActivated();
+void sensors_checkSensorState();
 
 //************************************************************************************
 
@@ -29,9 +31,12 @@ void MDL_sensors_init() {
 	sensors_handler.ordinalNumOfMeasurment = 0;
 
 	for (int i = 0; i < NUM_OF_SENSORS; i++) {
-		sensors_handler.sensors[i].currentState = PASIVE;
+		sensors_handler.sensors[i].currentState = GPIO_PIN_RESET;
+		sensors_handler.sensors[i].wantedState = GPIO_PIN_RESET;
 	}
 
+	sensors_handler.sensors[0].gpio_pin = GPIO_PIN_13;
+	sensors_handler.sensors[1].gpio_pin = GPIO_PIN_15;
 }
 
 void MDL_sensors_handler() {
@@ -46,7 +51,9 @@ void MDL_sensors_handler() {
 	case DETERMINING_SENSOR_STATE:
 		sensors_determineIfSensorsDetectedObject();
 		break;
-
+	case CHECKING_SENSOR_STATE:
+		sensors_checkSensorState();
+		break;
 	}
 }
 
@@ -57,17 +64,29 @@ void MDL_sensors_handler() {
 void sensors_determineIfSensorsDetectedObject() {
 
 	for (int i = 0; i < NUM_OF_SENSORS; i++) {
-		if (sensors_handler.sensors[i].sumOfDistances / NUM_OF_REQUIRED_MEASURMENTS > 6) {
-			sensors_sensorIsActivated();
+		if (sensors_handler.sensors[i].sumOfDistances / NUM_OF_REQUIRED_MEASURMENTS > 7) {
+			sensors_handler.sensors[i].wantedState = GPIO_PIN_SET;
+		} else {
+			sensors_handler.sensors[i].wantedState = GPIO_PIN_RESET;
+		}
 
+		sensors_handler.sensors[i].sumOfDistances = 0;
+	}
+
+	sensors_handler.state = CHECKING_SENSOR_STATE;
+}
+
+void sensors_checkSensorState() {
+
+	for (int i = 0; i < NUM_OF_SENSORS; i++) {
+		if(sensors_handler.sensors[i].currentState != sensors_handler.sensors[i].wantedState) {
+			HAL_GPIO_WritePin(GPIOG, sensors_handler.sensors[i].gpio_pin , sensors_handler.sensors[i].wantedState);
+			sensors_handler.sensors[i].currentState = sensors_handler.sensors[i].wantedState;
 		}
 	}
 
-}
-
-void sensors_sensorIsActivated() {
-
-
+	sensors_handler.state = GETTING_DATA;
+	sensors_handler.ordinalNumOfMeasurment = 0;
 
 }
 
@@ -78,7 +97,10 @@ void sensors_calculateCurrentData() {
 
 	if (++sensors_handler.ordinalNumOfMeasurment == NUM_OF_REQUIRED_MEASURMENTS) {
 		sensors_handler.state = DETERMINING_SENSOR_STATE;
+	} else {
+		sensors_handler.state = GETTING_DATA;
 	}
+
 }
 
 //************************************************************************************
