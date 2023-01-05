@@ -61,7 +61,7 @@ void SystemClock_Config(void);
 
 uint8_t LED_Data[NUM_OF_LEDS][4];
 int datasentflag = 0;
-int led[NUM_OF_LEDS] = {0, 1}; //, 2, 3, 4, 5};
+int led[NUM_OF_LEDS] = {0, 1}; // 2, 3, 4, 5};
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
 	HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_1);
@@ -123,6 +123,19 @@ void runda(void) {
 
 }
 
+void pobjeda(void) {
+	for (int i = 0; i < 4; i ++) {
+		Set_LED(i%NUM_OF_LEDS, 76, 0, 153);  //ljubicasta
+		Set_LED((i+1)%NUM_OF_LEDS, 0, 0, 255);  //plava
+		Set_LED((i+2)%NUM_OF_LEDS, 0, 204, 102);  //zelena
+		Set_LED((i+3)%NUM_OF_LEDS, 255, 255, 51);  //zuta
+		Set_LED((i+4)%NUM_OF_LEDS, 255, 128, 0);  //narancasta
+		Set_LED((i+5)%NUM_OF_LEDS, 255, 0, 0);  //crvena
+		Send();
+	}
+
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -155,47 +168,57 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_TIM1_Init();
+  MX_TIM2_Init();
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE BEGIN 2 */
 
-  Set_LED(0, 0, 0, 0);
-  Set_LED(1, 0, 0, 0);
+  Set_LED(0, 76, 0, 153);
+  Set_LED(1, 0, 0, 255);
   Send();
-
-  runda();
-
-  for (int i = 0; i < 100000;) {
-	  i++;
-  };
-
-  Set_LED(0, 0, 0, 0);
-  Set_LED(1, 0, 0, 0);
+  timer2_wait_millisec(1000);
+  Set_LED(0, 0, 0, 255);
+  Set_LED(1, 0, 204, 102);
   Send();
+  timer2_wait_millisec(1000);
+  Set_LED(0, 0, 204, 102);
+  Set_LED(1, 255, 255, 51);
+  Send();
+  timer2_wait_millisec(1000);
+  Set_LED(0, 255, 255, 51);
+  Set_LED(1, 255, 128, 0);
+  Send();
+  timer2_wait_millisec(1000);
+  Set_LED(0, 255, 128, 0);
+  Set_LED(1, 255, 0, 0);
+  Send();
+  timer2_wait_millisec(1000);
+  Set_LED(0, 255, 0, 0);
+  Set_LED(1, 76, 0, 153);
+  Send();
+  timer2_wait_millisec(1000);
 
-  for (int i = 0; i < 100000;) {
- 	  i++;
-   };
-
-  runda();
-//
-//  for (int i = 0; i < 10000000;) {
-//	  i++;
-//  };
 //  runda();
 //
-//  for (int i = 0; i < 10000000;) {
-//	  i++;
-//  }
+//  timer2_wait_millisec(1000);
 //  runda();
 //
-//  for (int i = 0; i < 10000000;) {
-//	  i++;
-//  }
+//  timer2_wait_millisec(1000);
 //  runda();
 //
-//  for (int i = 0; i < 10000000;) {
-//	  i++;
-//  }
+//  timer2_wait_millisec(1000);
 //  runda();
+//
+//  timer2_wait_millisec(1000);
+//  runda();
+//
+//  timer2_wait_millisec(1000);
+//  runda();
+//
+//  timer2_wait_millisec(1000);
+//  runda();
+//
+//  timer2_wait_millisec(1500);
+//  pobjeda();
 
   /* USER CODE END 2 */
 
