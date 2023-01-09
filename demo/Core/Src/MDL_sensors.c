@@ -44,6 +44,9 @@ void MDL_sensors_handler() {
 	switch(sensors_handler.state) {
 	case GETTING_DATA:
 		HAL_ADC_Start_DMA(&hadc1, (uint32_t *)sensors_handler.buffer, NUM_OF_SENSORS);
+		sensors_handler.state = WAITING_FOR_DATA;
+		break;
+	case WAITING_FOR_DATA:
 		break;
 	case CALCULATING_DATA:
 		sensors_calculateCurrentData();
@@ -64,7 +67,7 @@ void MDL_sensors_handler() {
 void sensors_determineIfSensorsDetectedObject() {
 
 	for (int i = 0; i < NUM_OF_SENSORS; i++) {
-		if (sensors_handler.sensors[i].sumOfDistances / NUM_OF_REQUIRED_MEASURMENTS > 7) {
+		if (sensors_handler.sensors[i].sumOfDistances / NUM_OF_REQUIRED_MEASURMENTS > 10) {
 			sensors_handler.sensors[i].wantedState = GPIO_PIN_SET;
 		} else {
 			sensors_handler.sensors[i].wantedState = GPIO_PIN_RESET;
@@ -104,7 +107,6 @@ void sensors_calculateCurrentData() {
 }
 
 //************************************************************************************
-
 
 // when DMA finishes transferring data this function is called
 
