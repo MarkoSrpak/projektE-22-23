@@ -102,7 +102,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+
+
+
 		MDL_sensors_handler();
+
+
+
 	}
   /* USER CODE END 3 */
 }

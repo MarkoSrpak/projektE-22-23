@@ -17,6 +17,7 @@ extern struct MDL_sensors_handler sensors_handler;
 
 typedef enum MDL_sensors_sensorsState {
 	GETTING_DATA,
+	WAITING_FOR_DATA,
 	CALCULATING_DATA,
 	DETERMINING_SENSOR_STATE,
 	CHECKING_SENSOR_STATE

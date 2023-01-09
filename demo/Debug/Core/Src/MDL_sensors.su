@@ -1,6 +1,6 @@
 ../Core/Src/MDL_sensors.c:29:6:MDL_sensors_init	16	static
 ../Core/Src/MDL_sensors.c:42:6:MDL_sensors_handler	8	static
-../Core/Src/MDL_sensors.c:64:6:sensors_determineIfSensorsDetectedObject	16	static
-../Core/Src/MDL_sensors.c:79:6:sensors_checkSensorState	16	static
-../Core/Src/MDL_sensors.c:93:6:sensors_calculateCurrentData	16	static
-../Core/Src/MDL_sensors.c:111:6:HAL_ADC_ConvCpltCallback	16	static
+../Core/Src/MDL_sensors.c:67:6:sensors_determineIfSensorsDetectedObject	16	static
+../Core/Src/MDL_sensors.c:82:6:sensors_checkSensorState	16	static
+../Core/Src/MDL_sensors.c:96:6:sensors_calculateCurrentData	16	static
+../Core/Src/MDL_sensors.c:113:6:HAL_ADC_ConvCpltCallback	16	static
