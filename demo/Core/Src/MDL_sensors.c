@@ -37,6 +37,10 @@ void MDL_sensors_init() {
 
 	sensors_handler.sensors[0].gpio_pin = GPIO_PIN_13;
 	sensors_handler.sensors[1].gpio_pin = GPIO_PIN_15;
+	sensors_handler.sensors[2].gpio_pin = GPIO_PIN_13;
+	sensors_handler.sensors[3].gpio_pin = GPIO_PIN_15;
+	sensors_handler.sensors[4].gpio_pin = GPIO_PIN_13;
+	sensors_handler.sensors[5].gpio_pin = GPIO_PIN_15;
 }
 
 void MDL_sensors_handler() {
@@ -47,6 +51,7 @@ void MDL_sensors_handler() {
 		sensors_handler.state = WAITING_FOR_DATA;
 		break;
 	case WAITING_FOR_DATA:
+//		__NOP();
 		break;
 	case CALCULATING_DATA:
 		sensors_calculateCurrentData();
@@ -67,7 +72,7 @@ void MDL_sensors_handler() {
 void sensors_determineIfSensorsDetectedObject() {
 
 	for (int i = 0; i < NUM_OF_SENSORS; i++) {
-		if (sensors_handler.sensors[i].sumOfDistances / NUM_OF_REQUIRED_MEASURMENTS > 10) {
+		if (sensors_handler.sensors[i].sumOfDistances / NUM_OF_REQUIRED_MEASURMENTS < SENSOR_THRESHOLD) {
 			sensors_handler.sensors[i].wantedState = GPIO_PIN_SET;
 		} else {
 			sensors_handler.sensors[i].wantedState = GPIO_PIN_RESET;

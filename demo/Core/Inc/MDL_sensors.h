@@ -8,8 +8,9 @@
 #ifndef INC_MDL_SENSORS_H_
 #define INC_MDL_SENSORS_H_
 
-#define NUM_OF_SENSORS 2
+#define NUM_OF_SENSORS 6
 #define NUM_OF_REQUIRED_MEASURMENTS 5
+#define SENSOR_THRESHOLD 80
 
 #include"main.h"
 
@@ -32,11 +33,11 @@ typedef struct MDL_sensor_handler {
 	uint16_t gpio_pin;
 	GPIO_PinState currentState;
 	GPIO_PinState wantedState;
-	uint8_t sumOfDistances;
+	uint32_t sumOfDistances;
 } MDL_sensor_handle;
 
 typedef struct MDL_sensors_handler {
-	MDL_sensors_sensorsState state;
+	volatile MDL_sensors_sensorsState state;
 	MDL_sensor_handle sensors[NUM_OF_SENSORS];
 	volatile uint16_t buffer[NUM_OF_SENSORS];
 	uint8_t ordinalNumOfMeasurment;
@@ -45,6 +46,5 @@ typedef struct MDL_sensors_handler {
 
 void MDL_sensors_init();
 void MDL_sensors_handler();
-
 
 #endif /* INC_MDL_SENSORS_H_ */
