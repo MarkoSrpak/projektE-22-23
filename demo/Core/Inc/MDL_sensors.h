@@ -10,7 +10,9 @@
 
 #define NUM_OF_SENSORS 6
 #define NUM_OF_REQUIRED_MEASURMENTS 5
-#define SENSOR_THRESHOLD 80
+#define NUM_OF_REQUIRED_MEASURMENTS_FOR_CALIBRATION 100
+#define THRESHOLD_REDUCER 50
+#define BIG_INT 10000
 
 #include"main.h"
 
@@ -21,7 +23,11 @@ typedef enum MDL_sensors_sensorsState {
 	WAITING_FOR_DATA,
 	CALCULATING_DATA,
 	DETERMINING_SENSOR_STATE,
-	CHECKING_SENSOR_STATE
+	CHECKING_SENSOR_STATE,
+	START_CALIBRATION,
+	WAITING_FOR_CALIBRATION_DATA,
+	CALCULATING_DATA_FOR_CALIBRATION,
+	CALIBRATING
 } MDL_sensors_sensorsState;
 
 typedef enum MDL_sensors_sensorState {
@@ -40,11 +46,13 @@ typedef struct MDL_sensors_handler {
 	volatile MDL_sensors_sensorsState state;
 	MDL_sensor_handle sensors[NUM_OF_SENSORS];
 	volatile uint16_t buffer[NUM_OF_SENSORS];
-	uint8_t ordinalNumOfMeasurment;
-
+	uint8_t ordinalNumOfMeasurement;
+	uint8_t ordinalNumOfMeasurementForCalibration;
+	uint8_t threshold;
 } MDL_sensors_handle;
 
 void MDL_sensors_init();
 void MDL_sensors_handler();
+void MDL_sensors_startSensorCalibration();
 
 #endif /* INC_MDL_SENSORS_H_ */
