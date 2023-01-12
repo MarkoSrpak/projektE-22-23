@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdbool.h>
+#include "beerpong.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,24 +41,14 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-GPIO_TypeDef *gpio_GREEN = GPIOG;
-uint16_t pin_GREEN = GPIO_PIN_13;
 
-GPIO_TypeDef *gpio_BUT1 = GPIOA;
-uint16_t pin_BUT1 = GPIO_PIN_0;
-
-GPIO_PinState state_BUT1;
-GPIO_PinState prev_state_BUT1;
-GPIO_PinState state_GREEN;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
-void BUT1_ON();
-void BUT1_OFF();
-void BUTTONS_CHECK();
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -95,7 +85,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  MDL_buttons_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,8 +93,8 @@ int main(void)
   while (1)
   {
 
-	  HAL_Delay(50);
-	  BUTTONS_CHECK();
+	  MDL_Buttons_Handler();
+
 
     /* USER CODE END WHILE */
 
@@ -164,17 +154,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PA0 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  /*Configure GPIO pins : PE10 PE11 PE12 PE13 */
+  GPIO_InitStruct.Pin = GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PG13 */
   GPIO_InitStruct.Pin = GPIO_PIN_13;
@@ -186,19 +176,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void BUT1_ON(){
-	state_GREEN = !state_GREEN;
-	HAL_GPIO_WritePin(gpio_GREEN, pin_GREEN, state_GREEN);
-}
-void BUT1_OFF(){
-
-}
-void BUTTONS_CHECK(){
-	state_BUT1 = HAL_GPIO_ReadPin(gpio_BUT1, pin_BUT1);
-	if(prev_state_BUT1 == GPIO_PIN_SET && state_BUT1 == GPIO_PIN_RESET) BUT1_OFF();
-	if(prev_state_BUT1 == GPIO_PIN_RESET && state_BUT1 == GPIO_PIN_SET) BUT1_ON();
-	prev_state_BUT1 = state_BUT1;
-}
 
 /* USER CODE END 4 */
 

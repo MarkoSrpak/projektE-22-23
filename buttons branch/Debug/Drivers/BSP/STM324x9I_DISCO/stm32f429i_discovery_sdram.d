@@ -1,4 +1,7 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Drivers/BSP/STM324x9I_DISCO/stm32f429i_discovery_sdram.o: \
+ C:/Users/Korisnik/STM32CubeIDE/workspace_1.11.0/STemWin_HelloWorld/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_sdram.c \
+ C:/Users/Korisnik/STM32CubeIDE/workspace_1.11.0/STemWin_HelloWorld/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_sdram.h \
+ C:/Users/Korisnik/STM32CubeIDE/workspace_1.11.0/STemWin_HelloWorld/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -22,10 +25,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_ltdc.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_ltdc_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
- ../Core/Inc/beerpong.h ../Core/Inc/MDL_buttons.h ../Core/Inc/main.h
-../Core/Inc/main.h:
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+C:/Users/Korisnik/STM32CubeIDE/workspace_1.11.0/STemWin_HelloWorld/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery_sdram.h:
+C:/Users/Korisnik/STM32CubeIDE/workspace_1.11.0/STemWin_HelloWorld/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
@@ -49,8 +54,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_ltdc.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_ltdc_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
-../Core/Inc/beerpong.h:
-../Core/Inc/MDL_buttons.h:
-../Core/Inc/main.h:
