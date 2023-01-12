@@ -93,7 +93,7 @@ void MDL_sensors_startSensorCalibration() {
 //**********************PRIVATE FUNCTION DEFINITIONS**********************************
 
 void sensors_calibrateSensors() {
-	uint32_t minMeasuredData = BIG_INT;
+	uint32_t minMeasuredData = MAX_INT16;
 
 	for (int i = 0; i < NUM_OF_SENSORS; i++) {
 		if (sensors_handler.sensors[i].sumOfDistances / NUM_OF_REQUIRED_MEASURMENTS_FOR_CALIBRATION < minMeasuredData) {
