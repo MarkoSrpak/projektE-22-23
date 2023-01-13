@@ -9,7 +9,7 @@
 #include "MDL_sensors.h"
 #include "adc.h"
 #include "gpio.h"
-
+#include "MDL_led.h"
 //*********************************PRIVATE FUNCTIONS**********************************
 
 void sensors_calculateCurrentData();
@@ -143,6 +143,9 @@ void sensors_checkSensorState() {
 					sensors_handler.sensors[i].wantedState);
 			sensors_handler.sensors[i].currentState =
 					sensors_handler.sensors[i].wantedState;
+
+			MDL_leds_scored(i);
+
 		}
 	}
 
@@ -169,6 +172,7 @@ void sensors_calculateCurrentData() {
 // when DMA finishes transferring data this function is called
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
+
 
 	if (sensors_handler.state == WAITING_FOR_CALIBRATION_DATA) {
 		sensors_handler.state = CALCULATING_DATA_FOR_CALIBRATION;

@@ -5,5 +5,5 @@
 ../Core/Src/MDL_sensors.c:108:6:sensors_calculateCurrentDataForCalibration	16	static
 ../Core/Src/MDL_sensors.c:121:6:sensors_determineIfSensorsDetectedObject	16	static
 ../Core/Src/MDL_sensors.c:137:6:sensors_checkSensorState	16	static
-../Core/Src/MDL_sensors.c:154:6:sensors_calculateCurrentData	16	static
-../Core/Src/MDL_sensors.c:171:6:HAL_ADC_ConvCpltCallback	16	static
+../Core/Src/MDL_sensors.c:157:6:sensors_calculateCurrentData	16	static
+../Core/Src/MDL_sensors.c:174:6:HAL_ADC_ConvCpltCallback	16	static
