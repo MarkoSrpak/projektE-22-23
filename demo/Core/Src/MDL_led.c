@@ -1,14 +1,13 @@
+#include <MDL_led.h>
 #include "main.h"
 #include "dma.h"
 #include "tim.h"
 #include "gpio.h"
-#include "ledice.h"
 #include <stdlib.h>
 
 void set_LED(uint8_t LEDnum, uint8_t Red, uint8_t Green, uint8_t Blue);
 void send();
 void next_round(void);
-uint8_t scored(uint8_t sensorNum);
 void win(void);
 
 
@@ -18,7 +17,7 @@ struct LED_handler ledHandler;
 
 void MDL_leds_init() {
 
-	ledHandler.state = WAITING;
+	ledHandler.state = NEXT_ROUND;
 	ledHandler.datasentflag = TRANSFER_NOT_FINISHED;
 
 	for(int i = 0; i < NUM_OF_LEDS; i++) {
@@ -69,8 +68,8 @@ void send(void) {
 	for (uint8_t i = 0; i < NUM_OF_LEDS; i++) {
 		color = ((ledHandler.LED_Data[i][1] << 16) | (ledHandler.LED_Data[i][2] << 8) | (ledHandler.LED_Data[i][3]));
 
-		for (uint8_t i = 23; i >= 0; i--) {
-			if (color & (1 << i))
+		for (uint8_t i = 24; i > 0; i--) {
+			if (color & (1 << (i - 1)))
 				ledHandler.pwmData[index] = 60;
 			else
 				ledHandler.pwmData[index] = 30;
@@ -83,9 +82,9 @@ void send(void) {
 		index++;
 	}
 
-	HAL_TIM_PWM_Start_DMA(&htim1, TIM_CHANNEL_1, (uint32_t*) ledHandler.pwmData, index);
-	while (ledHandler.datasentflag == TRANSFER_NOT_FINISHED) {};
+	HAL_TIM_PWM_Start_DMA(&htim4, TIM_CHANNEL_1, (uint32_t*) ledHandler.pwmData, index);
 	ledHandler.datasentflag = TRANSFER_NOT_FINISHED;
+	while (ledHandler.datasentflag == TRANSFER_NOT_FINISHED) {};
 
 }
 
@@ -105,7 +104,11 @@ void next_round(void) {
 	set_LED(LED_5, 0, 0, 0);
 	set_LED(LED_6, 0, 0, 0);
 	send();
-	timer2_wait_millisec(1000);
+
+//	timer2_wait_millisec(1000);
+
+	for (uint16_t i = 0; i < 10000; i++);
+
 
 	set_LED(ledHandler.led[0], 255, 0, 0);
 	set_LED(ledHandler.led[1], 0, 255, 0);
@@ -117,7 +120,7 @@ void next_round(void) {
 
 }
 
-uint8_t scored(uint8_t sensorNum) {
+void MDL_leds_scored(uint8_t sensorNum) {
 	uint8_t index;
 	uint8_t points = 25;  // plava
 	uint8_t color = 3;
@@ -137,15 +140,14 @@ uint8_t scored(uint8_t sensorNum) {
 	for (uint8_t j = 0; j < 3; j++) {
 		set_LED(sensorNum, 0, 0, 0);
 		send();
-		timer2_wait_millisec(100);
+		HAL_Delay(100);
 		if (color == 1)	set_LED(sensorNum, 255, 0, 0);
 		else if (color == 2) set_LED(sensorNum, 0, 255, 0);
 		else set_LED(sensorNum, 0, 0, 255);
 		send();
-		timer2_wait_millisec(100);
+		HAL_Delay(100);
 	}
 
-	return points;
 }
 
 
@@ -184,6 +186,5 @@ void win(void) {
 
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
-	HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_1);
 	ledHandler.datasentflag = TRANSFER_FINISHED;
 }

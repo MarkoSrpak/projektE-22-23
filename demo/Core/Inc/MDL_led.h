@@ -34,3 +34,4 @@ typedef struct LED_handler {
 
 void MDL_leds_handler();
 void MDL_leds_init();
+void MDL_leds_scored(uint8_t sensorNum);

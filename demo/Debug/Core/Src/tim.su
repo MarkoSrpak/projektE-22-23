@@ -3,8 +3,8 @@
 ../Core/Src/tim.c:27:6:HAL_TIM_PeriodElapsedCallback	16	static
 ../Core/Src/tim.c:33:10:timer2_get_millisec	16	static
 ../Core/Src/tim.c:41:6:timer2_wait_millisec	24	static
-../Core/Src/tim.c:62:6:MX_TIM1_Init	96	static
-../Core/Src/tim.c:132:6:MX_TIM2_Init	32	static
-../Core/Src/tim.c:172:6:HAL_TIM_Base_MspInit	24	static
-../Core/Src/tim.c:222:6:HAL_TIM_MspPostInit	40	static
-../Core/Src/tim.c:250:6:HAL_TIM_Base_MspDeInit	16	static
+../Core/Src/tim.c:62:6:MX_TIM2_Init	32	static
+../Core/Src/tim.c:102:6:MX_TIM4_Init	64	static
+../Core/Src/tim.c:156:6:HAL_TIM_Base_MspInit	24	static
+../Core/Src/tim.c:206:6:HAL_TIM_MspPostInit	40	static
+../Core/Src/tim.c:234:6:HAL_TIM_Base_MspDeInit	16	static
