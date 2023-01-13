@@ -1,2 +1,0 @@
-lcd.c:14:6:change_LCD_state	24	static
-lcd.c:40:6:LCD_Handler	8	static
