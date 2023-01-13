@@ -1,13 +1,13 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    adc.h
+  * @file    tim.h
   * @brief   This file contains all the function prototypes for
-  *          the adc.c file
+  *          the tim.c file
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -18,8 +18,8 @@
   */
 /* USER CODE END Header */
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __ADC_H__
-#define __ADC_H__
+#ifndef __TIM_H__
+#define __TIM_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,15 +32,24 @@ extern "C" {
 
 /* USER CODE END Includes */
 
-extern ADC_HandleTypeDef hadc1;
+extern TIM_HandleTypeDef htim1;
+
+extern TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
 
-void MX_ADC1_Init(void);
+void MX_TIM1_Init(void);
+void MX_TIM2_Init(void);
+
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN Prototypes */
+
+uint32_t timer2_get_millisec ( void );
+void timer2_wait_millisec ( uint32_t ms );
+
 
 /* USER CODE END Prototypes */
 
@@ -48,5 +57,5 @@ void MX_ADC1_Init(void);
 }
 #endif
 
-#endif /* __ADC_H__ */
+#endif /* __TIM_H__ */
 

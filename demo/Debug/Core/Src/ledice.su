@@ -1,0 +1,9 @@
+../Core/Src/ledice.c:19:6:MDL_leds_init	16	static
+../Core/Src/ledice.c:30:6:MDL_leds_handler	8	static
+../Core/Src/ledice.c:48:6:MDL_leds_state_change	4	static
+../Core/Src/ledice.c:58:6:set_LED	16	static
+../Core/Src/ledice.c:65:6:send	24	static
+../Core/Src/ledice.c:92:6:next_round	16	static
+../Core/Src/ledice.c:120:9:scored	24	static
+../Core/Src/ledice.c:152:6:win	16	static
+../Core/Src/ledice.c:186:6:HAL_TIM_PWM_PulseFinishedCallback	16	static
