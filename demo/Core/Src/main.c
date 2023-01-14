@@ -17,7 +17,6 @@
  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <MDL_led.h>
 #include "main.h"
 #include "adc.h"
 #include "dma.h"
@@ -28,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdlib.h>
 #include "MDL_sensors.h"
+#include "MDL_led.h"
 
 /* USER CODE END Includes */
 
@@ -95,11 +95,9 @@ int main(void)
   MX_DMA_Init();
   MX_ADC1_Init();
   MX_TIM4_Init();
-  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   MDL_sensors_init();
   MDL_leds_init();
-
 
   /* USER CODE END 2 */
 
@@ -110,7 +108,6 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-		MDL_leds_handler();
 		MDL_sensors_handler();
 
 	}
