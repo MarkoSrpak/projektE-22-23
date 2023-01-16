@@ -1,4 +1,5 @@
-Core/Src/MDL_buttons.o: ../Core/Src/MDL_buttons.c ../Core/Inc/main.h \
+Core/Src/MDL_dispenser.o: ../Core/Src/MDL_dispenser.c \
+ ../Core/Inc/FERpong.h ../Core/Inc/MDL_buttons.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -24,8 +25,9 @@ Core/Src/MDL_buttons.o: ../Core/Src/MDL_buttons.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
- ../Core/Inc/FERpong.h ../Core/Inc/MDL_buttons.h ../Core/Inc/main.h \
  ../Core/Inc/MDL_dispenser.h
+../Core/Inc/FERpong.h:
+../Core/Inc/MDL_buttons.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -52,7 +54,4 @@ Core/Src/MDL_buttons.o: ../Core/Src/MDL_buttons.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
-../Core/Inc/FERpong.h:
-../Core/Inc/MDL_buttons.h:
-../Core/Inc/main.h:
 ../Core/Inc/MDL_dispenser.h:

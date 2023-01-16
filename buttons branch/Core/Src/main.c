@@ -86,6 +86,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   MDL_buttons_init();
+  MDL_dispenser_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -94,7 +95,6 @@ int main(void)
   {
 
 	  MDL_Buttons_Handler();
-
 
     /* USER CODE END WHILE */
 

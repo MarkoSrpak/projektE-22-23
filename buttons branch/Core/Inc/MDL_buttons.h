@@ -10,7 +10,7 @@
 #endif /* INC_MDL_BUTTONS_H_ */
 
 
-#define NUM_OF_BUTTONS 3
+#define NUM_OF_BUTTONS 4
 #define BUTTON_HALT_TIME 5
 
 #include "main.h"

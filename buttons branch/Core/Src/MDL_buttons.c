@@ -6,11 +6,11 @@
  */
 
 #include "main.h"
-#include "MDL_buttons.h"
+#include "FERpong.h"
 
 
 struct MDL_buttons_handler buttons_handler;
-GPIO_PinState state;
+
 
 void MDL_buttons_init(){
 	//init GPIO gatea
@@ -22,10 +22,12 @@ void MDL_buttons_init(){
 	buttons_handler.buttons[0].gpio_pin = GPIO_PIN_10;
 	buttons_handler.buttons[1].gpio_pin = GPIO_PIN_11;
 	buttons_handler.buttons[2].gpio_pin = GPIO_PIN_12;
+	buttons_handler.buttons[3].gpio_pin = GPIO_PIN_13;
 
 	buttons_handler.buttons[0].button_type = START;
 	buttons_handler.buttons[1].button_type = MINUS;
 	buttons_handler.buttons[2].button_type = PLUS;
+	buttons_handler.buttons[3].button_type = TOCI;
 
 }
 
@@ -40,9 +42,13 @@ void BUTTON_CHECK(int i){
 	if(buttons_handler.buttons[i].prev_button_state == GPIO_PIN_RESET && buttons_handler.buttons[i].button_state == GPIO_PIN_SET){
 		//detected rising edge
 		if(buttons_handler.buttons[i].pressed_ago == BUTTON_HALT_TIME){
-			LCD_Bttn_Pressed(buttons_handler.buttons[i].button_type);
+//			LCD_Bttn_Pressed(buttons_handler.buttons[i].button_type);
+			if(buttons_handler.buttons[i].button_type == TOCI){
+				TociPressed();
+			}
 		}
 		buttons_handler.buttons[i].pressed_ago = 0;
+
 	}
 	if(buttons_handler.buttons[i].pressed_ago < BUTTON_HALT_TIME){
 		buttons_handler.buttons[i].pressed_ago++;
