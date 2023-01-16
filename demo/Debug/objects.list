@@ -1,3 +1,5 @@
+"./Core/Src/MDL_buttons.o"
+"./Core/Src/MDL_dispenser.o"
 "./Core/Src/MDL_led.o"
 "./Core/Src/MDL_sensors.o"
 "./Core/Src/adc.o"

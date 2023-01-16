@@ -1,13 +1,13 @@
+/*
+ * MDL_led.h
+ *
+ *  Created on: Jan 9, 2023
+ *      Author: Marija
+ */
+
 #include "main.h"
 
 #define NUM_OF_LEDS 6
-
-typedef enum MDL_leds_state {
-	NEXT_ROUND,
-	WAITING,
-	SCORED,
-	WIN
-} MDL_leds_state;
 
 typedef enum LED_sentStatus {
 	TRANSFER_FINISHED,
@@ -26,12 +26,13 @@ typedef enum LED_number {
 
 typedef struct LED_handler {
 	LED_sentStatus datasentflag;
-	uint8_t LED_Data[NUM_OF_LEDS][4];
-	MDL_leds_state state;
-	uint16_t pwmData[24 * NUM_OF_LEDS + 50];
 	uint8_t led[NUM_OF_LEDS];
+	uint8_t LED_Data[NUM_OF_LEDS][4];
+	uint16_t pwmData[24 * NUM_OF_LEDS + 50];
 } LED_handler;
 
-void MDL_leds_handler();
+
 void MDL_leds_init();
 void MDL_leds_scored(uint8_t sensorNum);
+void MDL_leds_next_round();
+void MDL_leds_win();
