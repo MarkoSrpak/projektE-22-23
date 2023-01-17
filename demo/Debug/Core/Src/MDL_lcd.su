@@ -1,0 +1,9 @@
+MDL_lcd.c:27:6:MDL_LCD_Bttn_Pressed	16	static
+MDL_lcd.c:127:6:MDL_LCD_Hit_Update	16	static
+MDL_lcd.c:208:6:MDL_LCD_Init	8	static
+MDL_lcd.c:227:6:LCD_Add_Player	24	static
+MDL_lcd.c:239:6:change_LCD_screenstate	8	static
+MDL_lcd.c:272:6:LCD_State_WELCOME	8	static
+MDL_lcd.c:282:6:LCD_State_NUM_OF_PLAYERS	8	static
+MDL_lcd.c:307:6:LCD_State_WIN	40	static
+MDL_lcd.c:352:6:LCD_State_PLAYERS	40	static
